@@ -1,0 +1,19 @@
+Feature: Searching for text at a google search website
+
+  Scenario: Searching for random text
+    Given I am at a designated google website "https://google.com" ... passed in 3.503s
+    When I search for "selenium webdriver" ... passed in 6.201s
+    Then I should see a list of "1" or more search results ... passed in 3.076s
+    And the headline should be "Selenium WebDriver" ... failed in 0.000s
+Assertion Failed: 
+Expected: 'Selenium WebDriver'
+     but: was 'WebDriver'
+
+Captured stdout:
+	** I opens the website @ "https://google.com"
+	** I enter searching text "selenium webdriver"
+	** I press the Google Search button
+	** I am making a list of headings from the result
+	** I verify that I have more than 1 headings
+	** I verify that the first heading is equal to "Selenium WebDriver"
+
