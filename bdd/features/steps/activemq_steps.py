@@ -47,19 +47,7 @@ def step_impl(context):
 @when(u'I create a queue "{queue_name}"')
 def step_impl(context, queue_name):
     context.queue_name = queue_name
-    # go to manage activeMQ broker
-    elems = context.driver.find_elements(By.XPATH, "//a[@title='Manage ActiveMQ broker']")
-    if not elems:
-        assert(False)
-        return
-    elems[0].click()
 
-    # go to Queues page
-    elems = context.driver.find_elements(By.XPATH, "//a[@title='Queues']")
-    if not elems:
-        assert(False)
-        return
-    elems[0].click()
 
     # enter queue name
     elems = context.driver.find_elements(By.XPATH, "//input[@name='JMSDestination']")
@@ -90,6 +78,22 @@ def step_impl(context, queue_name):
     # search and remove the queue we just created as a part of cleanup activities
     elems = context.driver.find_elements(By.XPATH, 
                                          "//td/a[contains(text(),'my_queue')]/../../td[7]/a[contains(text(),'Delete')]")
+    if not elems:
+        assert(False)
+        return
+    elems[0].click()
+
+@given(u'I at the Queue management page')
+def step_impl(context):
+    # go to manage activeMQ broker
+    elems = context.driver.find_elements(By.XPATH, "//a[@title='Manage ActiveMQ broker']")
+    if not elems:
+        assert(False)
+        return
+    elems[0].click()
+
+    # go to Queues page
+    elems = context.driver.find_elements(By.XPATH, "//a[@title='Queues']")
     if not elems:
         assert(False)
         return
